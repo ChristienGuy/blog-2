@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 const NavLink = styled(Link)`
   padding: 16px;
-  color: #333;
+  color: ${ ({ theme }) => theme.colors.primaryText };
 `
 
 export default NavLink

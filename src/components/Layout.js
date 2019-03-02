@@ -1,43 +1,15 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import styled, { ThemeProvider } from 'styled-components'
-import lightTheme from '@themes/lightTheme'
-import { Provider as ThemeChangeProvider } from '@src/themeChangeContext'
-
-import GlobalStyle from './GlobalStyle'
+import styled from 'styled-components'
 import Navbar from './Nav/Navbar'
-import darkTheme from '../themes/darkTheme'
 
 const Wrapper = styled.main`
-  padding: 0 16px;
+  padding: 16px 16px;
 `
 
-const ThemeState = {
-  LIGHT: 'light',
-  DARK: 'dark',
-}
-
 const Layout = ({ children }) => {
-  const [theme, setTheme] = useState(lightTheme)
-  const [themeState, setThemeState] = useState(ThemeState.LIGHT)
-
-  const themeChangeContext = {
-    darkMode: () => {
-      setTheme(darkTheme)
-    },
-    toggleTheme: () => {
-      if (themeState === ThemeState.LIGHT) {
-        setTheme(darkTheme)
-        setThemeState(ThemeState.DARK)
-      } else {
-        setTheme(lightTheme)
-        setThemeState(ThemeState.LIGHT)
-      }
-    },
-  }
-
   return (
     <StaticQuery
       query={graphql`
@@ -64,15 +36,8 @@ const Layout = ({ children }) => {
             />
             <html lang="en" />
           </Helmet>
-          <ThemeChangeProvider value={themeChangeContext}>
-            <ThemeProvider theme={theme}>
-              <>
-                <GlobalStyle />
-                <Navbar />
-                <Wrapper>{children}</Wrapper>
-              </>
-            </ThemeProvider>
-          </ThemeChangeProvider>
+          <Navbar />
+          <Wrapper>{children}</Wrapper>
         </Fragment>
       )}
     />

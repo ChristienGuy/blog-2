@@ -7,10 +7,13 @@ html {
     Droid Sans, Helvetica Neue, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-
-  min-height: 100vh;
+  background-color: ${ ({ theme }) => theme.colors.primary };
+  width: 100%;
 }
 body {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
   margin: 0;
   background-color: ${ ({ theme }) => theme.colors.background };
 }
@@ -205,7 +208,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: ${ ({ theme }) => theme.colors.primaryText };
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;

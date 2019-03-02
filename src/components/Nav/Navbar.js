@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import ThemeChangeContext from '@src/themeChangeContext'
+import { ToggleThemeContext } from '@src/themes'
 
 const Nav = styled.nav`
   display: flex;
@@ -25,17 +25,17 @@ const HomeLink = styled(NavLink)`
 `
 
 const Navbar = () => {
-  const { toggleTheme } = useContext(ThemeChangeContext)
+  const { toggleTheme } = useContext(ToggleThemeContext)
 
   return (
     <div style={{ height: 100 }}>
       <Nav>
         <HomeLink to="/">CG</HomeLink>
         <button onClick={toggleTheme}>dark</button>
-        <NavLink to="https://twitter.com/christien_guy">
+        <NavLink as="a" to="https://twitter.com/christien_guy">
           <FontAwesomeIcon icon={faTwitter} />
         </NavLink>
-        <NavLink to="https://github.com/ChristienGuy">
+        <NavLink as="a" to="https://github.com/ChristienGuy">
           <FontAwesomeIcon icon={faGithub} />
         </NavLink>
       </Nav>
