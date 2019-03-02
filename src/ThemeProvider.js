@@ -10,20 +10,18 @@ const ThemeState = {
 
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(lightTheme)
-  const [themeState, setThemeState] = useState(ThemeState.LIGHT)
 
-  const toggleTheme = () => {
+  const changeTheme = ({ themeState }) => {
     if (themeState === ThemeState.LIGHT) {
-      setTheme(darkTheme)
-      setThemeState(ThemeState.DARK)
-    } else {
       setTheme(lightTheme)
-      setThemeState(ThemeState.LIGHT)
+    } else {
+      setTheme(darkTheme)
     }
   }
 
   const toggleThemeContext = {
-    toggleTheme,
+    changeTheme,
+    ThemeState,
   }
 
   return (
