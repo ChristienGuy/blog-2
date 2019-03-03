@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { ToggleThemeContext } from '@themes'
 import Toggle from '../Toggle'
-import { ToggleThemeType } from '@src/ThemeProvider';
+import { ToggleThemeType, ThemeState } from '@src/ThemeProvider';
 
 const ExternalNavLink = styled.a`
   padding: 16px;
@@ -32,7 +32,7 @@ const HomeLink = styled(NavLink)`
 `
 
 const Navbar = () => {
-  const { changeTheme, ThemeState } = useContext<ToggleThemeType>(ToggleThemeContext)
+  const { changeTheme } = useContext<ToggleThemeType>(ToggleThemeContext)
 
   const toggleTheme = ({ toggleState }: { toggleState: string }) => {
     if (toggleState === Toggle.States.ON) {

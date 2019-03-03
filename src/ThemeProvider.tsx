@@ -4,8 +4,8 @@ import GlobalStyle from '@components/GlobalStyle'
 import { lightTheme, darkTheme, ToggleThemeContext } from '@src/themes'
 
 export enum ThemeState {
-  LIGHT = 'light',
-  DARK = 'dark',
+  LIGHT = 0,
+  DARK = 1,
 }
 
 export type ToggleThemeType = {
