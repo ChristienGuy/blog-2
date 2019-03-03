@@ -1,19 +1,20 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import GlobalStyle from '@components/GlobalStyle'
 import { lightTheme, darkTheme, ToggleThemeContext } from '@src/themes'
 
 export enum ThemeState {
-  LIGHT = 0,
-  DARK = 1,
+  LIGHT,
+  DARK,
 }
 
 export type ToggleThemeType = {
   changeTheme: ({
     themeState,
   }: {
-  themeState: ThemeState.LIGHT | ThemeState.DARK
-  }) => void
+  themeState: ThemeState
+  }) => void,
+  themeState: ThemeState,
 }
 
 type Props = {
@@ -23,12 +24,18 @@ type Props = {
 const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState(lightTheme)
 
+  useEffect(() => {
+    const themeState: ThemeState = +window.localStorage.getItem('theme')
+    changeTheme({ themeState: themeState })
+  }, [])
+
   const changeTheme = ({ themeState }: { themeState: ThemeState }) => {
     if (themeState === ThemeState.LIGHT) {
       setTheme(lightTheme)
     } else {
       setTheme(darkTheme)
     }
+    window.localStorage.setItem('theme', themeState.toString())
   }
 
   const toggleThemeContext = {

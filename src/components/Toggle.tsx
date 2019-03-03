@@ -1,16 +1,16 @@
 import React, { useState, Fragment } from 'react'
 import styled from 'styled-components'
 
-const ToggleState = {
-  ON: 'on',
-  OFF: 'off',
+enum ToggleState {
+  ON,
+  OFF,
 }
 
 const ToggleWrapper = styled.label<{ size: number }>`
   background-color: #333;
   display: inline-flex;
   width: ${ ({ size }) => `${ size * 2 }px` };
-  border-radius: 32px;
+  border-radius: ${ ({ size }) => size }px;
   margin: 0;
   padding: 0;
 `
@@ -38,15 +38,16 @@ const HiddenInput = styled.input`
   visiblity: hidden;
 `
 
-// TODO: styling
 type Props = {
-  onChange: ({ toggleState }: { toggleState: string }) => void
+  onChange: ({ toggleState }: { toggleState: ToggleState }) => void
   id: string
-  size: number
+  size?: number
+  className?: string
+  defaultState: ToggleState
 }
 
-const Toggle = ({ onChange, id, size }: Props) => {
-  const [toggleState, setToggleState] = useState(ToggleState.OFF)
+const Toggle = ({ onChange, id, size, className, defaultState }: Props) => {
+  const [toggleState, setToggleState] = useState<ToggleState>(defaultState)
   const onToggle = () => {
     if (toggleState === ToggleState.ON) {
       setToggleState(ToggleState.OFF)
@@ -59,7 +60,7 @@ const Toggle = ({ onChange, id, size }: Props) => {
 
   return (
     <Fragment>
-      <ToggleWrapper size={size} htmlFor={id}>
+      <ToggleWrapper size={size} htmlFor={id} className={className}>
         <ToggleThumb on={toggleState === ToggleState.ON} size={size} />
       </ToggleWrapper>
       <HiddenInput
@@ -74,6 +75,7 @@ const Toggle = ({ onChange, id, size }: Props) => {
 
 Toggle.defaultProps = {
   size: 20,
+  defaultState: ToggleState.OFF,
 }
 
 Toggle.States = ToggleState
