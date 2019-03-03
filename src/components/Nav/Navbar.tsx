@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { ToggleThemeContext } from '@src/themes'
+import { ToggleThemeContext } from '@themes'
 import Toggle from '../Toggle'
+import { ToggleThemeType } from '@src/ThemeProvider';
 
 const ExternalNavLink = styled.a`
   padding: 16px;
@@ -31,11 +32,9 @@ const HomeLink = styled(NavLink)`
 `
 
 const Navbar = () => {
-  const { changeTheme, ThemeState } = useContext(ToggleThemeContext)
+  const { changeTheme, ThemeState } = useContext<ToggleThemeType>(ToggleThemeContext)
 
-  const toggleTheme = ({ toggleState }) => {
-    console.log(toggleState)
-
+  const toggleTheme = ({ toggleState }: { toggleState: string }) => {
     if (toggleState === Toggle.States.ON) {
       changeTheme({ themeState: ThemeState.DARK })
     } else {

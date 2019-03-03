@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["esnext", "dom"],
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@themes/*": ["src/themes/*"],
+      "@themes": ["src/themes"],
+      "@src/*": ["src/*"],
+    }
+  },
+  "include": ["./src/**/*"]
+}

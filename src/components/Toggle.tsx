@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 
 const ToggleState = {
   ON: 'on',
   OFF: 'off',
 }
 
-const Toggle = ({ onChange }) => {
+// TODO: styling
+type Props = {
+  onChange: ({ toggleState }: { toggleState: string }) => void
+}
+
+const Toggle = ({ onChange }: Props) => {
   const [toggleState, setToggleState] = useState(ToggleState.OFF)
   const onToggle = () => {
     if (toggleState === ToggleState.ON) {
@@ -18,14 +23,14 @@ const Toggle = ({ onChange }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <label>{toggleState}</label>
       <input
         type="checkbox"
         onChange={onToggle}
         value={toggleState === ToggleState.ON}
       />
-    </>
+    </Fragment>
   )
 }
 
