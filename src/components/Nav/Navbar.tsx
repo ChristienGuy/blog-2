@@ -20,6 +20,7 @@ const Nav = styled.nav`
   left: 0;
   right: 0;
 
+  transition: ${({ theme }) => theme.themeTransition('background')};
   background: ${ ({ theme }) => theme.colors.background };
   border-top: 3px solid ${ ({ theme }) => theme.colors.primary };
 `
@@ -28,6 +29,7 @@ const HomeLink = styled(NavLink)`
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.05rem;
+  transition: ${({ theme }) => theme.themeTransition('color')};
   color: ${ ({ theme }) => theme.colors.textPrimary };
   margin-right: auto;
 `

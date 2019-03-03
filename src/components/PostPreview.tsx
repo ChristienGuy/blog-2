@@ -4,15 +4,18 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 
 const StyledLink = styled(Link)`
+  transition: ${({ theme }) => theme.themeTransition('color')};
   color: ${ ({ theme }) => theme.colors.primaryText };
   text-decoration: none;
 `
 
 const Title = styled.h2`
+  transition: ${({ theme }) => theme.themeTransition('color')};
   color: ${ ({ theme }) => theme.colors.primary };
   margin-bottom: 0px;
 `
 
+// TODO: get this color from theme
 const Date = styled.span`
   font-size: 0.75rem;
   color: #9e9e9e;

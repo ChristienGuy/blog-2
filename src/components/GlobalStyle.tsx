@@ -10,6 +10,7 @@ html {
 }
 body {
   margin: 0;
+  transition: ${({ theme }) => theme.themeTransition('background-color')};
   background-color: ${ ({ theme }) => theme.colors.background };
 }
 article,

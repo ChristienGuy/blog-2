@@ -24,7 +24,7 @@ const ToggleThumb = styled.span<ToggleThumbProps>`
   height: ${ ({ size }) => `${ size }px` };
   background-color: white;
   display: inline-block;
-  transition: transform 100ms ease-in-out;
+  transition: transform 200ms ease-in-out;
   transform: ${ ({ on, size }) =>
     on ? `translateX(${ size }px)` : `translateX(0)` };
 
