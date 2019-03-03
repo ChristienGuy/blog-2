@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { ToggleThemeContext } from '@themes'
 import Toggle from '../Toggle'
-import { ToggleThemeType, ThemeState } from '@src/ThemeProvider';
+import { ToggleThemeType, ThemeState } from '@src/ThemeProvider'
 
 const ExternalNavLink = styled.a`
   padding: 16px;
@@ -14,6 +14,7 @@ const ExternalNavLink = styled.a`
 
 const Nav = styled.nav`
   display: flex;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -27,7 +28,7 @@ const HomeLink = styled(NavLink)`
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.05rem;
-  color: #333;
+  color: ${ ({ theme }) => theme.colors.textPrimary };
   margin-right: auto;
 `
 
@@ -46,7 +47,7 @@ const Navbar = () => {
     <div style={{ height: 100 }}>
       <Nav>
         <HomeLink to="/">CG</HomeLink>
-        <Toggle onChange={toggleTheme} />
+        <Toggle id="theme-toggle" onChange={toggleTheme} />
         <ExternalNavLink href="https://twitter.com/christien_guy">
           <FontAwesomeIcon icon={faTwitter} />
         </ExternalNavLink>
