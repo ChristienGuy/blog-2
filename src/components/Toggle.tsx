@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import styled from 'styled-components'
 
 enum ToggleState {
@@ -35,29 +35,18 @@ const ToggleThumb = styled.span<ToggleThumbProps>`
 const HiddenInput = styled.input`
   width: 0;
   height: 0;
-  visiblity: hidden;
+  visibility: hidden;
 `
 
 type Props = {
-  onChange: ({ toggleState }: { toggleState: ToggleState }) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   id: string
   size?: number
   className?: string
-  defaultState: ToggleState
+  toggleState: ToggleState
 }
 
-const Toggle = ({ onChange, id, size, className, defaultState }: Props) => {
-  const [toggleState, setToggleState] = useState<ToggleState>(defaultState)
-  const onToggle = () => {
-    if (toggleState === ToggleState.ON) {
-      setToggleState(ToggleState.OFF)
-      onChange({ toggleState: ToggleState.OFF })
-    } else {
-      setToggleState(ToggleState.ON)
-      onChange({ toggleState: ToggleState.ON })
-    }
-  }
-
+const Toggle = ({ onChange, id, size, className, toggleState }: Props) => {
   return (
     <Fragment>
       <ToggleWrapper size={size} htmlFor={id} className={className}>
@@ -66,8 +55,8 @@ const Toggle = ({ onChange, id, size, className, defaultState }: Props) => {
       <HiddenInput
         id={id}
         type="checkbox"
-        onChange={onToggle}
-        value={toggleState === ToggleState.ON}
+        onChange={onChange}
+        checked={toggleState === ToggleState.ON}
       />
     </Fragment>
   )

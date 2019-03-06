@@ -2,19 +2,16 @@ import React, { useState, Fragment, useEffect } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import GlobalStyle from '@components/GlobalStyle'
 import { lightTheme, darkTheme, ToggleThemeContext } from '@src/themes'
+import Navbar from '@components/Nav/Navbar'
 
 export enum ThemeState {
-  LIGHT,
-  DARK,
+  LIGHT = 'light',
+  DARK = 'dark',
 }
 
 export type ToggleThemeType = {
-  changeTheme: ({
-    themeState,
-  }: {
+  changeTheme: ({ themeState }: { themeState: ThemeState }) => void
   themeState: ThemeState
-  }) => void,
-  themeState: ThemeState,
 }
 
 type Props = {
@@ -23,23 +20,30 @@ type Props = {
 
 const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState(lightTheme)
+  const [themeState, setThemeState] = useState(ThemeState.LIGHT)
 
   useEffect(() => {
-    const themeState: ThemeState = +window.localStorage.getItem('theme')
-    changeTheme({ themeState: themeState })
-  }, [])
+    const themeState: ThemeState = window.localStorage.getItem('theme')
+
+    if (themeState) {
+      changeTheme({ themeState })
+    }
+  })
 
   const changeTheme = ({ themeState }: { themeState: ThemeState }) => {
     if (themeState === ThemeState.LIGHT) {
       setTheme(lightTheme)
+      setThemeState(ThemeState.LIGHT)
     } else {
       setTheme(darkTheme)
+      setThemeState(ThemeState.DARK)
     }
     window.localStorage.setItem('theme', themeState.toString())
   }
 
   const toggleThemeContext = {
     changeTheme,
+    themeState,
   }
 
   return (
@@ -47,6 +51,7 @@ const ThemeProvider = ({ children }: Props) => {
       <StyledThemeProvider theme={theme}>
         <Fragment>
           <GlobalStyle />
+          <Navbar />
           {children}
         </Fragment>
       </StyledThemeProvider>

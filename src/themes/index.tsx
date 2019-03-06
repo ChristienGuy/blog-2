@@ -5,6 +5,7 @@ import { ToggleThemeType } from '@src/ThemeProvider'
 
 const ToggleThemeContext = createContext<ToggleThemeType>({
   changeTheme: () => {},
+  themeState: null
 })
 
 export { lightTheme, darkTheme, ToggleThemeContext }

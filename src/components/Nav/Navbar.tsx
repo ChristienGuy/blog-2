@@ -1,15 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { ToggleThemeContext } from '@themes'
-import Toggle from '../Toggle'
-import { ToggleThemeType, ThemeState } from '@src/ThemeProvider'
-
-const ThemeToggle = styled(Toggle)`
-  margin: 0 16px;
-`
+import ThemeToggle from './ThemeToggle';
 
 const ExternalNavLink = styled.a`
   padding: 16px;
@@ -39,26 +33,11 @@ const HomeLink = styled(NavLink)`
 `
 
 const Navbar = () => {
-  const { changeTheme, themeState } = useContext<ToggleThemeType>(
-    ToggleThemeContext
-  )
-
-  const toggleTheme = ({ toggleState }: { toggleState: Toggle.States }) => {
-    if (toggleState === Toggle.States.ON) {
-      changeTheme({ themeState: ThemeState.DARK })
-    } else {
-      changeTheme({ themeState: ThemeState.LIGHT })
-    }
-  }
-
-  const toggleState =
-    themeState === ThemeState.LIGHT ? Toggle.States.OFF : Toggle.States.ON
-
   return (
     <div style={{ height: 100 }}>
       <Nav>
         <HomeLink to="/">CG</HomeLink>
-        <ThemeToggle id="theme-toggle" onChange={toggleTheme} defaultState={toggleState} />
+        <ThemeToggle />
         <ExternalNavLink href="https://twitter.com/christien_guy">
           <FontAwesomeIcon icon={faTwitter} />
         </ExternalNavLink>

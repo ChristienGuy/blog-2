@@ -36,7 +36,6 @@ const Layout = ({ children }) => {
             />
             <html lang="en" />
           </Helmet>
-          <Navbar />
           <Wrapper>{children}</Wrapper>
         </Fragment>
       )}
