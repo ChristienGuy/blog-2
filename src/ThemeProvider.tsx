@@ -23,10 +23,12 @@ const ThemeProvider = ({ children }: Props) => {
   const [themeState, setThemeState] = useState(null)
 
   useEffect(() => {
-    const themeState: ThemeState = window.localStorage.getItem('theme')
+    const themeState: string = window.localStorage.getItem('theme')
 
     if (themeState) {
       changeTheme({ themeState })
+    } else {
+      changeTheme({ themeState: ThemeState.LIGHT })
     }
   })
 

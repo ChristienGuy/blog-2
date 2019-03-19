@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
 const Wrapper = styled.main`
-  padding: 16px 16px;
+  padding: 0 16px;
   max-width: 800px;
   margin: 0 auto;
 `

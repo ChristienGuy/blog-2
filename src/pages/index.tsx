@@ -1,17 +1,17 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import Layout from '@components/Layout'
 import PostPreview, { Post } from '@components/PostPreview'
 import styled from 'styled-components'
 
 const PostList = styled.ul`
   list-style: none;
-  padding: 0;
+  padding: 12px 0;
   margin: 0;
 `
 
 const PostListItem = styled.li`
-  margin-bottom: 24px;
+  margin-bottom: 0;
 `
 
 type MDXPage = {
@@ -53,9 +53,9 @@ const IndexPage: React.FC<Props> = ({ data }) => {
 }
 
 export const pageQuery = graphql`
-  {
+  query PostQuery($loadDraft: Boolean) {
     allMdx(
-      filter: { frontmatter: { draft: { eq: false } } }
+      filter: { frontmatter: { draft: { eq: $loadDraft } } }
       sort: { fields: frontmatter___date, order: DESC }
     ) {
       edges {

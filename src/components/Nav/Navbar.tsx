@@ -21,6 +21,7 @@ const Nav = styled.nav`
   transition: ${ ({ theme }) => theme.themeTransition('background') };
   background: ${ ({ theme }) => theme.colors.background };
   border-top: 3px solid ${ ({ theme }) => theme.colors.primary };
+  border-bottom: 1px solid #dddddd;
 `
 
 const HomeLink = styled(NavLink)`
@@ -29,13 +30,13 @@ const HomeLink = styled(NavLink)`
   letter-spacing: 0.05rem;
   font-size: 20px;
   transition: ${ ({ theme }) => theme.themeTransition('color') };
-  color: ${ ({ theme }) => theme.colors.textPrimary };
+  color: ${ ({ theme }) => theme.colors.primary };
   margin-right: auto;
 `
 
 const Navbar = () => {
   return (
-    <div style={{ height: 100 }}>
+    <div style={{ height: 56 }}>
       <Nav>
         <HomeLink to="/">CG</HomeLink>
         <ThemeToggle />

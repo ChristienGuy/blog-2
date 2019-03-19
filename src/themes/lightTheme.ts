@@ -4,9 +4,10 @@ import { Theme } from './types';
 const lightTheme: Theme = {
   ...baseTheme,
   colors: {
-    primary: '#ea8635',
+    primary: '#db7e32',
     background: '#fff',
     primaryText: '#333',
+    lightText: '#cdcdcd',
   },
 }
 

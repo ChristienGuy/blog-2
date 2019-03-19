@@ -4,21 +4,24 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 
 const StyledLink = styled(Link)`
+  display: block;
   transition: ${({ theme }) => theme.themeTransition('color')};
   color: ${ ({ theme }) => theme.colors.primaryText };
   text-decoration: none;
+
+  padding: 24px 0;
 `
 
 const Title = styled.h2`
-  transition: ${({ theme }) => theme.themeTransition('color')};
-  color: ${ ({ theme }) => theme.colors.primary };
-  margin-bottom: 0px;
+  margin-bottom: 16px;
 `
 
 // TODO: get this color from theme
 const Date = styled.span`
+  display: inline-block;
   font-size: 0.75rem;
-  color: #9e9e9e;
+  color: #696969;
+  margin-bottom: 4px;
 `
 
 export type Post = {
@@ -36,8 +39,8 @@ type Props = {
 }
 const PostPreview = ({ post }: Props) => (
   <StyledLink to={post.frontmatter.path}>
-    <Title>{post.frontmatter.title}</Title>
     <Date>{format(post.frontmatter.date, 'DD MMMM, YYYY')}</Date>
+    <Title>{post.frontmatter.title}</Title>
     {post.frontmatter.excerpt ? <p>{post.frontmatter.excerpt}</p> : null}
   </StyledLink>
 )

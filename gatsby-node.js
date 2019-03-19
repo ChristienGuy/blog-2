@@ -7,6 +7,18 @@
 // You can delete this file if you're not using it
 const path = require('path')
 
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+
+  deletePage(page)
+  createPage({
+    ...page,
+    context: {
+      loadDraft: process.env.NODE_ENV === 'development',
+    },
+  })
+}
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
   const BlogPostTemplate = path.resolve(`src/templates/BlogPostTemplate.tsx`)

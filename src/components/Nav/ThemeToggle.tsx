@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { ToggleThemeType, ThemeState } from '@src/ThemeProvider'
 import Toggle from '@components/Toggle'
-import { useEffect, useState, useContext } from 'react'
 import { ToggleThemeContext } from '@themes'
 
 const ToggleStyled = styled(Toggle)`
@@ -25,6 +24,7 @@ const ThemeToggle = () => {
   if (themeState !== null) {
     const toggleState =
       themeState === ThemeState.LIGHT ? Toggle.States.OFF : Toggle.States.ON
+
     return (
       <ToggleStyled
         id="theme-toggle"
