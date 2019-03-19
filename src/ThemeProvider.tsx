@@ -11,7 +11,7 @@ export enum ThemeState {
 
 export type ToggleThemeType = {
   changeTheme: ({ themeState }: { themeState: ThemeState }) => void
-  themeState: ThemeState
+  themeState: ThemeState | null
 }
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
 
 const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState(lightTheme)
-  const [themeState, setThemeState] = useState(ThemeState.LIGHT)
+  const [themeState, setThemeState] = useState(null)
 
   useEffect(() => {
     const themeState: ThemeState = window.localStorage.getItem('theme')

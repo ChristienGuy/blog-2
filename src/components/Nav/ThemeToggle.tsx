@@ -10,42 +10,28 @@ const ToggleStyled = styled(Toggle)`
 `
 
 const ThemeToggle = () => {
-  const [toggleState, setToggleState] = useState(Toggle.States.OFF)
   const { changeTheme, themeState } = useContext<ToggleThemeType>(
     ToggleThemeContext
   )
 
-  useEffect(() => {
-    if (themeState === ThemeState.LIGHT) {
-      setToggleState(Toggle.States.OFF)
-    } else {
-      setToggleState(Toggle.States.ON)
-    }
-  }, [ themeState ])
-
   const toggleTheme = () => {
     if (themeState === ThemeState.LIGHT) {
       changeTheme({ themeState: ThemeState.DARK })
-      setToggleState(Toggle.States.ON)
     } else {
       changeTheme({ themeState: ThemeState.LIGHT })
-      setToggleState(Toggle.States.OFF)
     }
   }
 
-  useEffect(() => {
-    setToggleState(
-      themeState === ThemeState.LIGHT ? Toggle.States.OFF : Toggle.States.ON
-    )
-  }, [])
 
-  return (
+  const toggleState = themeState === ThemeState.LIGHT ? Toggle.States.OFF : Toggle.States.ON
+
+  return themeState !== null ? (
     <ToggleStyled
       id="theme-toggle"
       onChange={toggleTheme}
       toggleState={toggleState}
     />
-  )
+  ) : null
 }
 
 export default ThemeToggle

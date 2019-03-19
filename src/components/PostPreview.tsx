@@ -21,7 +21,8 @@ const Date = styled.span`
   color: #9e9e9e;
 `
 
-type Post = {
+export type Post = {
+  id: string,
   frontmatter: {
     title: string
     date: Date
@@ -30,10 +31,10 @@ type Post = {
   }
 }
 
-type Prop = {
+type Props = {
   post: Post
 }
-const PostPreview = ({ post }: Prop) => (
+const PostPreview = ({ post }: Props) => (
   <StyledLink to={post.frontmatter.path}>
     <Title>{post.frontmatter.title}</Title>
     <Date>{format(post.frontmatter.date, 'DD MMMM, YYYY')}</Date>
