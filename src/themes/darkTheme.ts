@@ -1,6 +1,7 @@
 import baseTheme from './baseTheme';
+import { Theme } from './types';
 
-export default {
+const darkTheme: Theme = {
   ...baseTheme,
   colors: {
     primary: '#ea8635',
@@ -8,3 +9,5 @@ export default {
     primaryText: '#ddd',
   },
 }
+
+export default darkTheme;

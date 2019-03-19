@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import Navbar from './Nav/Navbar'
 
 const Wrapper = styled.main`
   padding: 16px 16px;
+  max-width: 800px;
+  margin: 0 auto;
 `
 
 const Layout = ({ children }) => {

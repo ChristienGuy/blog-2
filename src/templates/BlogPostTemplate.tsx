@@ -11,6 +11,8 @@ const BlogTemplate = ({ data }) => {
       <Helmet title={mdx.frontmatter.title} />
 
       <h1>{mdx.frontmatter.title}</h1>
+      <span>{mdx.timeToRead} minutes</span>
+
       <MDXRenderer>{mdx.code.body}</MDXRenderer>
     </Layout>
   )
@@ -20,6 +22,7 @@ export const pageQuery = graphql`
   query($id: String!) {
     mdx(id: { eq: $id }) {
       id
+      timeToRead
       frontmatter {
         title
         path

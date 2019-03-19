@@ -27,6 +27,7 @@ const HomeLink = styled(NavLink)`
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.05rem;
+  font-size: 20px;
   transition: ${ ({ theme }) => theme.themeTransition('color') };
   color: ${ ({ theme }) => theme.colors.textPrimary };
   margin-right: auto;

@@ -1,4 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
+import { Theme } from '@themes/types'
+
+type Props = {
+  theme: Theme
+}
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -7,11 +12,14 @@ html {
     Droid Sans, Helvetica Neue, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+
+  font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1600 - 320)));
 }
 body {
   margin: 0;
-  transition: ${({ theme }) => theme.themeTransition('background-color')};
-  background-color: ${ ({ theme }) => theme.colors.background };
+  transition: ${ ({ theme }: Props) =>
+    theme.themeTransition('background-color') };
+  background-color: ${ ({ theme }: Props) => theme.colors.background };
 }
 article,
 aside,
@@ -64,10 +72,6 @@ strong {
 }
 dfn {
   font-style: italic;
-}
-h1 {
-  font-size: 2em;
-  margin: .67em 0;
 }
 mark {
   background-color: #ff0;
@@ -610,11 +614,6 @@ pre code:after,
 pre tt:before,
 pre tt:after {
   content: "";
-}
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
 }
 `
 
