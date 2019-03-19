@@ -22,16 +22,19 @@ const ThemeToggle = () => {
     }
   }
 
+  if (themeState !== null) {
+    const toggleState =
+      themeState === ThemeState.LIGHT ? Toggle.States.OFF : Toggle.States.ON
+    return (
+      <ToggleStyled
+        id="theme-toggle"
+        onChange={toggleTheme}
+        toggleState={toggleState}
+      />
+    )
+  }
 
-  const toggleState = themeState === ThemeState.LIGHT ? Toggle.States.OFF : Toggle.States.ON
-
-  return themeState !== null ? (
-    <ToggleStyled
-      id="theme-toggle"
-      onChange={toggleTheme}
-      toggleState={toggleState}
-    />
-  ) : null
+  return null
 }
 
 export default ThemeToggle
