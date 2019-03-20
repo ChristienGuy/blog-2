@@ -6,7 +6,7 @@ const themeTransitionSpeed = 200;
 const baseTheme: BaseTheme = {
     themeTransitionSpeed,
     themeTransition: (property: string) => css`
-      ${property} ${themeTransitionSpeed}ms ease-out;
+      ${property} ${themeTransitionSpeed}ms ease-out
     `
 }
 

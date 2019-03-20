@@ -5,7 +5,8 @@ import { format } from 'date-fns'
 
 const StyledLink = styled(Link)`
   display: block;
-  transition: ${({ theme }) => theme.themeTransition('color')};
+  transition: ${ ({ theme }) => theme.themeTransition('color') },
+    box-shadow 200ms ease-in-out;
   color: ${ ({ theme }) => theme.colors.primaryText };
   text-decoration: none;
 
@@ -24,8 +25,10 @@ const Date = styled.span`
   margin-bottom: 4px;
 `
 
+const Excerpt = styled.p``
+
 export type Post = {
-  id: string,
+  id: string
   frontmatter: {
     title: string
     date: Date
@@ -41,7 +44,9 @@ const PostPreview = ({ post }: Props) => (
   <StyledLink to={post.frontmatter.path}>
     <Date>{format(post.frontmatter.date, 'DD MMMM, YYYY')}</Date>
     <Title>{post.frontmatter.title}</Title>
-    {post.frontmatter.excerpt ? <p>{post.frontmatter.excerpt}</p> : null}
+    {post.frontmatter.excerpt ? (
+      <Excerpt>{post.frontmatter.excerpt}</Excerpt>
+    ) : null}
   </StyledLink>
 )
 

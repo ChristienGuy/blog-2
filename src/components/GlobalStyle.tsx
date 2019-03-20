@@ -1,9 +1,15 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 import { Theme } from '@themes/types'
+import { fluidType } from '@src/utils/styles'
 
 type Props = {
   theme: Theme
 }
+
+const minVw = 320
+const maxVw = 1600
+const minFontSize = 16
+const maxFontSize = 20
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -12,8 +18,7 @@ html {
     Droid Sans, Helvetica Neue, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-
-  font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1600 - 320)));
+  ${ fluidType(minVw, maxVw, minFontSize, maxFontSize) };
 }
 body {
   margin: 0;
@@ -228,7 +233,7 @@ img {
   padding-top: 0;
   margin-bottom: 1.45rem;
 }
-h1 {
+h1, h2, h3, h4, h5, h6 {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -236,85 +241,42 @@ h1 {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
+  font-weight: 200;
+  text-rendering: optimizeLegibility;
+}
+h1 {
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
   font-size: 2.25rem;
   line-height: 1.1;
 }
 h2 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
   line-height: 1.1;
 }
 h3 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
   line-height: 1.1;
 }
 h4 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
   font-size: 1rem;
   line-height: 1.1;
 }
 h5 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
   line-height: 1.1;
 }
 h6 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
   line-height: 1.1;
 }

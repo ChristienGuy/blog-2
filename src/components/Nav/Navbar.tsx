@@ -13,15 +13,10 @@ const ExternalNavLink = styled.a`
 const Nav = styled.nav`
   display: flex;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
 
   transition: ${ ({ theme }) => theme.themeTransition('background') };
   background: ${ ({ theme }) => theme.colors.background };
   border-top: 3px solid ${ ({ theme }) => theme.colors.primary };
-  border-bottom: 1px solid #dddddd;
 `
 
 const HomeLink = styled(NavLink)`
