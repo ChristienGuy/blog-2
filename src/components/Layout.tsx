@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import { ToggleThemeContext } from '@themes/'
+import { ToggleThemeType, ThemeState } from '@src/ThemeProvider'
 
 const Wrapper = styled.main`
   padding: 0 16px;
@@ -11,6 +13,7 @@ const Wrapper = styled.main`
 `
 
 const Layout = ({ children }) => {
+  const { themeState } = useContext<ToggleThemeType>(ToggleThemeContext)
   return (
     <StaticQuery
       query={graphql`
@@ -29,7 +32,11 @@ const Layout = ({ children }) => {
             meta={[
               { name: 'description', content: 'A blog about web stuff' },
               { name: 'keywords', content: 'web' },
-              { name: 'theme-color', content: '#db7e32' },
+              {
+                name: 'theme-color',
+                content:
+                  themeState === ThemeState.LIGHT ? '#db7e32' : '#ea8635',
+              },
             ]}
           >
             <link

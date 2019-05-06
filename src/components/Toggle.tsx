@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 
 enum ToggleState {
