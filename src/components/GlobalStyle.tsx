@@ -59,6 +59,7 @@ template {
 }
 a {
   background-color: transparent;
+  color: ${ ({ theme }) => theme.primary };
   -webkit-text-decoration-skip: objects;
 }
 a:active,
