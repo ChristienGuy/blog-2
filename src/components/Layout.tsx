@@ -29,6 +29,7 @@ const Layout = ({ children }) => {
             meta={[
               { name: 'description', content: 'A blog about web stuff' },
               { name: 'keywords', content: 'web' },
+              { name: 'theme-color', content: '#db7e32' },
             ]}
           >
             <link
