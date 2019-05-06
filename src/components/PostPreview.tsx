@@ -25,8 +25,6 @@ const Date = styled.span`
   margin-bottom: 4px;
 `
 
-const Excerpt = styled.p``
-
 export type Post = {
   id: string
   frontmatter: {
@@ -44,9 +42,7 @@ const PostPreview = ({ post }: Props) => (
   <StyledLink to={post.frontmatter.path}>
     <Date>{format(post.frontmatter.date, 'DD MMMM, YYYY')}</Date>
     <Title>{post.frontmatter.title}</Title>
-    {post.frontmatter.excerpt ? (
-      <Excerpt>{post.frontmatter.excerpt}</Excerpt>
-    ) : null}
+    {post.frontmatter.excerpt ? <p>{post.frontmatter.excerpt}</p> : null}
   </StyledLink>
 )
 
