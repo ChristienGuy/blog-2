@@ -52,6 +52,7 @@ const IndexPage: React.FC<Props> = ({ data }) => {
   )
 }
 
+// TODO: update this to load all content not just draft: true or draft: false
 export const pageQuery = graphql`
   query PostQuery($loadDraft: Boolean) {
     allMdx(
