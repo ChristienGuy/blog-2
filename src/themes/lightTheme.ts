@@ -1,12 +1,13 @@
-import baseTheme from './baseTheme';
-import { Theme } from './types';
+import baseTheme from './baseTheme'
+import { Theme } from './types'
 
 const lightTheme: Theme = {
   ...baseTheme,
   colors: {
-    primary: '#db7e32',
+    primary: '#cc7126',
     background: '#fff',
-    primaryText: '#333'
+    primaryText: '#333',
+    fadedText: '#696969',
   },
 }
 

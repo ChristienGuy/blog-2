@@ -5,9 +5,9 @@ import { format } from 'date-fns'
 
 const StyledLink = styled(Link)`
   display: block;
-  transition: ${ ({ theme }) => theme.themeTransition('color') },
+  transition: ${({ theme }) => theme.themeTransition('color')},
     box-shadow 200ms ease-in-out;
-  color: ${ ({ theme }) => theme.colors.primaryText };
+  color: ${({ theme }) => theme.colors.primaryText};
   text-decoration: none;
 
   padding: 24px 0;
@@ -21,7 +21,7 @@ const Title = styled.h2`
 const Date = styled.span`
   display: inline-block;
   font-size: 0.75rem;
-  color: #696969;
+  color: ${({ theme }) => theme.colors.fadedText};
   margin-bottom: 4px;
 `
 
