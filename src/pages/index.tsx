@@ -45,12 +45,7 @@ type Props = {
 const IndexPage: React.FC<Props> = ({ data }) => {
   const posts = postsPreviews(data)
 
-  return (
-    <Layout>
-      {posts ? <LatestPosts posts={posts} /> : 'No posts'}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </Layout>
-  )
+  return <Layout>{posts ? <LatestPosts posts={posts} /> : 'No posts'}</Layout>
 }
 
 // TODO: update this to load all content not just draft: true or draft: false
