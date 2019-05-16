@@ -1,0 +1,34 @@
+---
+title: Click away hook
+date: 2019-05-06
+path: /click-away-hook
+excerpt: How do you know when a click has happened somewhere that's *not* your component
+draft: true
+---
+
+Listening for a click outside of your component.
+
+First we need to know _what_ your component is. Do this by passing it a ref.
+
+```
+const Tooltip = () => {
+  const nodeRef = useRef();
+  return (
+    <span ref={nodeRef}>
+      some info about your site.
+    </span>
+  )
+}
+```
+
+Then you need to add a listener to the entire document and work out if the click happened within or without our component. This happens in the same way you would for vanilla JS.
+
+```js
+document.addEventListener('click', onDocumentClick)
+```
+
+Then we can flip some state based on that happening.
+
+What about a nice hook to wrap all that up. Pass in a method to run, return a ref for use on the component to watch.
+
+Check out the [source](https://github.com/ChristienGuy/react-click-away) of the finished hook.

@@ -13,12 +13,13 @@ exports.onCreatePage = ({ page, actions }) => {
   deletePage(page)
   createPage({
     ...page,
-    context: {
-      loadDraft: process.env.NODE_ENV === 'development',
-    },
+    // context: {
+    //   loadDraft: process.env.NODE_ENV === 'development',
+    // },
   })
 }
 
+// TODO: filter out drafts from here
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
   const BlogPostTemplate = path.resolve(`src/templates/BlogPostTemplate.tsx`)
@@ -28,7 +29,12 @@ exports.createPages = ({ actions, graphql }) => {
       graphql(
         `
           {
-            allMdx {
+            allMdx(${
+  process.env.NODE_ENV === 'production'
+    ? 'filter: { frontmatter: { draft: {ne: true}}}'
+    : ''
+}
+              ) {
               edges {
                 node {
                   id

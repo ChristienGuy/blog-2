@@ -1,8 +1,9 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Layout from '@components/Layout'
-import PostPreview, { Post } from '@components/PostPreview'
+import PostPreview from '@components/PostPreview'
 import styled from 'styled-components'
+import { postsPreviews, PostPreviewEdge } from '@src/draftPosts'
 
 const PostList = styled.ul`
   list-style: none;
@@ -14,11 +15,7 @@ const PostListItem = styled.li`
   margin-bottom: 0;
 `
 
-type MDXPage = {
-  node: Post
-}
-
-const LatestPosts: React.FC<{ posts: MDXPage[] }> = ({ posts }) => (
+const LatestPosts: React.FC<{ posts: PostPreviewEdge[] }> = ({ posts }) => (
   <PostList>
     {posts
       .sort((a, b) => {
@@ -36,39 +33,40 @@ const LatestPosts: React.FC<{ posts: MDXPage[] }> = ({ posts }) => (
 
 type Props = {
   data: {
-    allMdx: {
-      edges: MDXPage[]
+    production: {
+      edges: PostPreviewEdge[]
+    }
+    development: {
+      edges: PostPreviewEdge[]
     }
   }
 }
 
 const IndexPage: React.FC<Props> = ({ data }) => {
-  const { allMdx } = data
+  const posts = postsPreviews(data)
 
   return (
     <Layout>
-      {allMdx ? <LatestPosts posts={allMdx.edges} /> : 'No posts'}
+      {posts ? <LatestPosts posts={posts} /> : 'No posts'}
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </Layout>
   )
 }
 
 // TODO: update this to load all content not just draft: true or draft: false
 export const pageQuery = graphql`
-  query PostQuery($loadDraft: Boolean) {
-    allMdx(
-      filter: { frontmatter: { draft: { eq: $loadDraft } } }
-      sort: { fields: frontmatter___date, order: DESC }
+  {
+    production: allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { draft: { ne: true } } }
     ) {
       edges {
-        node {
-          id
-          frontmatter {
-            title
-            path
-            excerpt
-            date
-          }
-        }
+        ...PostPreview
+      }
+    }
+    development: allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        ...PostPreview
       }
     }
   }

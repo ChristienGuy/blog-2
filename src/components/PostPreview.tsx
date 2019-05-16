@@ -5,9 +5,9 @@ import { format } from 'date-fns'
 
 const StyledLink = styled(Link)`
   display: block;
-  transition: ${({ theme }) => theme.themeTransition('color')},
+  transition: ${ ({ theme }) => theme.themeTransition('color') },
     box-shadow 200ms ease-in-out;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${ ({ theme }) => theme.colors.primaryText };
   text-decoration: none;
 
   padding: 24px 0;
@@ -17,15 +17,14 @@ const Title = styled.h2`
   margin-bottom: 16px;
 `
 
-// TODO: get this color from theme
 const Date = styled.span`
   display: inline-block;
   font-size: 0.75rem;
-  color: ${({ theme }) => theme.colors.fadedText};
+  color: ${ ({ theme }) => theme.colors.fadedText };
   margin-bottom: 4px;
 `
 
-export type Post = {
+export type PostPreviewType = {
   id: string
   frontmatter: {
     title: string
@@ -36,9 +35,9 @@ export type Post = {
 }
 
 type Props = {
-  post: Post
+  post: PostPreviewType
 }
-const PostPreview = ({ post }: Props) => (
+const PostPreview: React.FC<Props> = ({ post }) => (
   <StyledLink to={post.frontmatter.path}>
     <Date>{format(post.frontmatter.date, 'DD MMMM, YYYY')}</Date>
     <Title>{post.frontmatter.title}</Title>
