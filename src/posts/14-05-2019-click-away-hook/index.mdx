@@ -1,34 +1,147 @@
 ---
-title: Click away hook
-date: 2019-05-06
+title: React Click Away Hooks
+date: 2019-05-14
 path: /click-away-hook
-excerpt: How do you know when a click has happened somewhere that's *not* your component
+excerpt: How do you know when a click has happened somewhere that's *not* our component?
 draft: true
 ---
 
-Listening for a click outside of your component.
+Something I've had to do an awful lot is little poppers, menus, dialogs, and modals. Things that aren't visible by default but show up based on an action from a user. More often than not they overlap other content as well. A lot of the time the expected behaviour pattern for these is that when you click somewhere that isn't the component in question, it closes.
 
-First we need to know _what_ your component is. Do this by passing it a ref.
+I've done it so much that I've made quite a few helpers over the years to handle it. The latest one is a neat React Hook.
 
-```
+The general gist of this is firstly we need to know what element on the page is our component, then we need to know if a click happened, then finally we need to work out if that click happened inside our component or outside of it.
+
+So step one, we need to know _where_ our component is in the DOM. In react we can do this by [passing it a ref](https://reactjs.org/docs/refs-and-the-dom.html).
+
+```jsx
 const Tooltip = () => {
-  const nodeRef = useRef();
-  return (
-    <span ref={nodeRef}>
-      some info about your site.
-    </span>
-  )
+  const nodeRef = useRef()
+  return <span ref={nodeRef}>some info about our site.</span>
 }
 ```
 
-Then you need to add a listener to the entire document and work out if the click happened within or without our component. This happens in the same way you would for vanilla JS.
+Next we need to know if a click happened. We can't go with the standard react way of doing things here, where you would place an `onClick` prop directly onto the component as this will only fire when that component specifically has been clicked. What we need to do is listen for a click _anywhere_ in the DOM and then work out where that click happened. To do that we add a listener to the entire document. Adding an event listener works exactly as it does in standard JS.
 
 ```js
 document.addEventListener('click', onDocumentClick)
 ```
 
-Then we can flip some state based on that happening.
+When we're adding event listeners we want to make sure that we're adding event listeners when the browser is ready, and that we're cleaning up after ourselves. In react with hooks we can do that with effects.
 
-What about a nice hook to wrap all that up. Pass in a method to run, return a ref for use on the component to watch.
+```jsx
+const Tooltip = () => {
+  const nodeRef = useRef()
 
-Check out the [source](https://github.com/ChristienGuy/react-click-away) of the finished hook.
+  useEffect(() => {
+    const handleClickAway = event => {
+      // work out where the click happened
+      // Do some stuff based on that
+    }
+    document.addEventListener('click', handleClickAway)
+
+    return () => {
+      document.removeEventListener('click', handleClickAway)
+    }
+  }, [])
+
+  return <span ref={nodeRef}>some info about our site.</span>
+}
+```
+
+Next thing to do is to work out where that click happened, we can do that using the ref we setup earlier and see if it is or contains `event.target`. This works using [Node.contains](https://developer.mozilla.org/en-US/docs/Web/API/Node/contains) which returns true if the node you pass it is a descendent of the node you call it on.
+
+```jsx
+const Tooltip = () => {
+  const nodeRef = useRef()
+
+  useEffect(() => {
+    const handleClickAway = event => {
+      if (!nodeRef.contains(event.target)) {
+        // The click happened on an element that is *not* this one
+        // or any of its children
+      }
+    }
+    document.addEventListener('click', handleClickAway)
+
+    return () => {
+      document.removeEventListener('click', handleClickAway)
+    }
+  }, [])
+
+  return <span ref={nodeRef}>some info about our site.</span>
+}
+```
+
+Great, so now we know that a click has happened, and that it was _not_ on our component. So now we have to decide what to do with that information. In this instance I'm just going to set a little bit of state and use that to decide whether to render the component or not.
+
+```jsx
+const Tooltip = () => {
+  const [visible, setVisible] = useState(false)
+  const nodeRef = useRef()
+
+  useEffect(() => {
+    const handleClickAway = event => {
+      if (!nodeRef.contains(event.target)) {
+        setVisible(false)
+      }
+    }
+    document.addEventListener('click', handleClickAway)
+
+    return () => {
+      document.removeEventListener('click', handleClickAway)
+    }
+  }, [])
+
+  return {visible && <span ref={nodeRef}>some info about our site.</span>}
+}
+```
+
+This is great, we can hide the component whenever a user clicks away from it. In it's current form it's not particularly portable though, we can fix this by moving all that logic into a custom hook. The hook will take a callback argument, a method to run when a user clicks away from our component, and will return a ref we can pass to the component we want to track.
+
+```JS
+const useClickAway = (onClickAway: (e: MouseEvent) => void) => {
+  const [node, setNode] = useState<Element | null>(null);
+
+  const nodeRef = useCallback((node: any) => {
+    setNode(node);
+  }, []);
+
+  useEffect(() => {
+    if (!node) return;
+
+    const onClick = (event: MouseEvent) => {
+      if (!node.contains(event.target as Element)) {
+        onClickAway(event);
+      }
+    };
+    document.addEventListener("click", onClick);
+
+    return () => {
+      document.removeEventListener("click", onClick);
+    };
+  }, [node, onClickAway]);
+
+  return nodeRef;
+};
+```
+
+You'll notice that we don't actually pass back a ref, we pass a callback that eventually assigns a ref to state. This is so that we're notified about changes to the ref value and can react accordingly. This is [explained more here](https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node)
+
+Now we can tidy up that tooltip from later while also making all that logic easy to share between different components.
+
+```jsx
+const Tooltip = () => {
+  const [visible, setVisible] = useState(true)
+
+  const nodeRef = useClickAway(() => {
+    setVisible(false)
+  })
+
+  return <span ref={nodeRef}>some info about our site.</span>
+}
+```
+
+Innit lovely.
+
+Check out the [source](https://github.com/ChristienGuy/react-click-away) of the finished hook if you want it in once place, I've also published it [up to NPM](https://www.npmjs.com/package/react-click-away-hook) if you're interested in just installing it and using it right away.

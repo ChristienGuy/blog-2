@@ -29,12 +29,12 @@ exports.createPages = ({ actions, graphql }) => {
       graphql(
         `
           {
-            allMdx(${
+            allMdx${
   process.env.NODE_ENV === 'production'
-    ? 'filter: { frontmatter: { draft: {ne: true}}}'
+    ? '(filter: { frontmatter: { draft: {ne: true} } })'
     : ''
 }
-              ) {
+               {
               edges {
                 node {
                   id
