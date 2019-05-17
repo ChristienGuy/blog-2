@@ -43,7 +43,16 @@ module.exports = {
         name: 'markdown-pages',
       },
     },
-    'gatsby-mdx',
+    {
+      resolve: 'gatsby-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-prismjs',
+          },
+        ],
+      },
+    },
     'gatsby-plugin-styled-components',
     'gatsby-plugin-offline',
   ],

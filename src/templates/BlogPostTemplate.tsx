@@ -30,7 +30,7 @@ const BlogTemplate = ({ data }) => {
 }
 
 export const pageQuery = graphql`
-  query($id: String!) {
+  query MDXBlogPostQuery($id: String!) {
     mdx(id: { eq: $id }) {
       id
       timeToRead
