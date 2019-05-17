@@ -9,7 +9,7 @@ type Props = {
 const minVw = 320
 const maxVw = 1600
 const minFontSize = 16
-const maxFontSize = 20
+const maxFontSize = 18
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -243,7 +243,8 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  font-weight: 200;
+  font-weight: 700;
+  text-transform: uppercase;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.04em;
 }
@@ -346,7 +347,7 @@ p {
   padding-right: 0;
   padding-top: 0;
   margin-bottom: 1.45rem;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 figure {
   margin-left: 0;
