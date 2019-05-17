@@ -245,6 +245,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 0;
   font-weight: 200;
   text-rendering: optimizeLegibility;
+  letter-spacing: -0.04em;
 }
 h1 {
   margin-bottom: 1.45rem;
@@ -345,6 +346,7 @@ p {
   padding-right: 0;
   padding-top: 0;
   margin-bottom: 1.45rem;
+  letter-spacing: -0.03em;
 }
 figure {
   margin-left: 0;

@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
             ]}
           >
             <link
-              href="https://fonts.googleapis.com/css?family=Work+Sans:400,600"
+              href="https://fonts.googleapis.com/css?family=Work+Sans:400,600?display=swap"
               rel="stylesheet"
             />
             <html lang="en" />
