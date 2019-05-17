@@ -10,6 +10,7 @@ const Wrapper = styled.main`
   padding: 0 16px;
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 80px;
 `
 
 const Layout = ({ children }) => {
