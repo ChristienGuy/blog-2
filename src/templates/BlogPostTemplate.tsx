@@ -1,14 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Helmet from 'react-helmet'
 import Layout from '@components/Layout'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Header = styled.header`
   margin-bottom: 32px;
   margin-top: 32px;
-`;
+`
 
 const Heading = styled.h1`
   margin-bottom: 8px;
@@ -24,7 +24,7 @@ const BlogTemplate = ({ data }) => {
         <span>{mdx.timeToRead} minutes</span>
       </Header>
 
-      <MDXRenderer>{mdx.code.body}</MDXRenderer>
+      <MDXRenderer>{mdx.body}</MDXRenderer>
     </Layout>
   )
 }
@@ -34,12 +34,10 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       timeToRead
+      body
       frontmatter {
         title
         path
-      }
-      code {
-        body
       }
     }
   }

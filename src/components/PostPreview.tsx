@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 const StyledLink = styled(Link)`
   display: block;
-  transition: ${ ({ theme }) => theme.themeTransition('color') },
-    box-shadow 200ms ease-in-out;
-  color: ${ ({ theme }) => theme.colors.primaryText };
+  color: ${({ theme }) => theme.colors.primaryText};
   text-decoration: none;
 
   padding: 24px 0;
@@ -20,7 +18,7 @@ const Title = styled.h2`
 const Date = styled.span`
   display: inline-block;
   font-size: 0.75rem;
-  color: ${ ({ theme }) => theme.colors.fadedText };
+  color: ${({ theme }) => theme.colors.fadedText};
   margin-bottom: 4px;
 `
 
@@ -28,7 +26,7 @@ export type PostPreviewType = {
   id: string
   frontmatter: {
     title: string
-    date: Date
+    date: string
     path: string
     excerpt: string
   }
@@ -39,7 +37,7 @@ type Props = {
 }
 const PostPreview: React.FC<Props> = ({ post }) => (
   <StyledLink to={post.frontmatter.path}>
-    <Date>{format(post.frontmatter.date, 'DD MMMM, YYYY')}</Date>
+    <Date>{format(parseISO(post.frontmatter.date), 'dd MMMM, yyyy')}</Date>
     <Title>{post.frontmatter.title}</Title>
     {post.frontmatter.excerpt ? <p>{post.frontmatter.excerpt}</p> : null}
   </StyledLink>

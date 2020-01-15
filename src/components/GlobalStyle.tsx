@@ -18,14 +18,12 @@ html {
     Droid Sans, Helvetica Neue, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  ${ fluidType(minVw, maxVw, minFontSize, maxFontSize) };
+  ${fluidType(minVw, maxVw, minFontSize, maxFontSize)};
   line-height: 1.6;
 }
 body {
   margin: 0;
-  transition: ${ ({ theme }: Props) =>
-    theme.themeTransition('background-color') };
-  background-color: ${ ({ theme }: Props) => theme.colors.background };
+  background-color: ${({ theme }: Props) => theme.colors.background};
 }
 article,
 aside,
@@ -60,7 +58,7 @@ template {
 }
 a {
   background-color: transparent;
-  color: ${ ({ theme }) => theme.colors.primary };
+  color: ${({ theme }) => theme.colors.primary};
   -webkit-text-decoration-skip: objects;
 }
 a:active,
@@ -215,7 +213,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: ${ ({ theme }) => theme.colors.primaryText };
+  color: ${({ theme }) => theme.colors.primaryText};
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;

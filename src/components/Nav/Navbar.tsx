@@ -14,7 +14,6 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
 
-  transition: ${({ theme }) => theme.themeTransition('background')};
   background: ${({ theme }) => theme.colors.background};
   border-top: 3px solid ${({ theme }) => theme.colors.primary};
 `
@@ -24,7 +23,6 @@ const HomeLink = styled(NavLink)`
   font-weight: 600;
   letter-spacing: 0.05rem;
   font-size: 20px;
-  transition: ${({ theme }) => theme.themeTransition('color')};
   color: ${({ theme }) => theme.colors.primary};
   margin-right: auto;
 `

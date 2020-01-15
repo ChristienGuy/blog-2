@@ -8,7 +8,12 @@
 import React from 'react'
 
 import ThemeProvider from '@src/ThemeProvider'
+import PageElement from '@src/PageElement'
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>
+)
+
+export const wrapPageElement = ({ element }) => (
+  <PageElement>{element}</PageElement>
 )

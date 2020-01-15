@@ -35,7 +35,7 @@ export type PostPreviewEdge = {
 }
 
 export const postsPreviews = (data: {
-production: { edges: PostPreviewEdge[] }
+  production: { edges: PostPreviewEdge[] }
 }) => {
   return data[process.env.NODE_ENV].edges
 }

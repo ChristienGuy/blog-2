@@ -5,6 +5,7 @@ module.exports = {
     title: 'blog',
   },
   plugins: [
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-typescript`,
@@ -39,21 +40,19 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${ __dirname }/src/posts`,
-        name: 'markdown-pages',
+        path: `${__dirname}/src/posts`,
+        name: 'posts',
       },
     },
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-prismjs',
-          },
-        ],
+        gatsbyRemarkPlugins: ['gatsby-remark-prismjs'],
+        defaultLayouts: {
+          posts: require.resolve('./src/templates/BlogPostTemplate.tsx'),
+        },
       },
     },
-    'gatsby-plugin-styled-components',
     'gatsby-plugin-offline',
   ],
 }
