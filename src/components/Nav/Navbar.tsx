@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import ThemeToggle from './ThemeToggle'
 
 const ExternalNavLink = styled.a`
   padding: 16px;
@@ -32,7 +31,6 @@ const Navbar = () => {
     <div style={{ height: 56 }}>
       <Nav>
         <HomeLink to="/">CG</HomeLink>
-        <ThemeToggle />
         <ExternalNavLink
           href="https://twitter.com/christien_guy"
           aria-label="Twitter"
