@@ -47,7 +47,7 @@
     "react-helmet": "^5.2.1",
     "styled-components": "^5.0.0",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "scripts": {
     "build": "gatsby build",
