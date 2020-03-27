@@ -1118,10 +1118,10 @@
     unist-builder "1.0.4"
     unist-util-visit "2.0.1"
 
-"@mdx-js/react@^1.5.4":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.5.4.tgz#50eca29ea5bc3f39ef5edb1a091a29197b7b5534"
-  integrity sha512-em3glbduH3AaFmdcxT0YhQYF54+UfHl3cMbDSv3DdA5yFKTowNEK+52073X3t2MsUEBeoOD/fT3iraAUM33bTQ==
+"@mdx-js/react@^1.5.8":
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.5.8.tgz#fc38fe0eb278ae24666b2df3c751e726e33f5fac"
+  integrity sha512-L3rehITVxqDHOPJFGBSHKt3Mv/p3MENYlGIwLNYU89/iVqTLMD/vz8hL9RQtKqRoMbKuWpzzLlKIObqJzthNYg==
 
 "@mdx-js/tag@^0.20.3":
   version "0.20.3"
