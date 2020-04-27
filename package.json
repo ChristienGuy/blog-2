@@ -31,7 +31,7 @@
     "date-fns": "^2.9.0",
     "gatsby": "^2.18.22",
     "gatsby-plugin-alias-imports": "^1.0.5",
-    "gatsby-plugin-manifest": "^2.2.37",
+    "gatsby-plugin-manifest": "^2.3.7",
     "gatsby-plugin-mdx": "^1.0.67",
     "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-page-creator": "^2.1.38",
