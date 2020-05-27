@@ -14,7 +14,7 @@ const Heading = styled.h1`
   margin-bottom: 8px;
 `
 
-const BlogTemplate = ({ data }) => {
+const BlogTemplate = ({ data }: { data: { mdx: any } }) => {
   const { mdx } = data
   return (
     <Layout>
