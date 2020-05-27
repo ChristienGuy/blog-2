@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
@@ -37,7 +37,7 @@ const Layout: React.FC = ({ children }) => {
             ]}
           >
             <link
-              href="https://fonts.googleapis.com/css?family=Work+Sans:400,600?display=swap"
+              href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap"
               rel="stylesheet"
             />
             <html lang="en" />
