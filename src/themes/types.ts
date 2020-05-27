@@ -3,6 +3,6 @@ export type Theme = {
     primary: string
     background: string
     primaryText: string
-    fadedTest: string
+    fadedText: string
   }
 }
