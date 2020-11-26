@@ -29,7 +29,7 @@
     "babel-plugin-styled-components": "^1.11.1",
     "core-js": "^3.6.5",
     "date-fns": "^2.15.0",
-    "gatsby": "^2.24.23",
+    "gatsby": "^2.27.3",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-manifest": "^2.4.21",
     "gatsby-plugin-mdx": "^1.2.30",
