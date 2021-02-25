@@ -34,7 +34,7 @@
     "gatsby-plugin-manifest": "^2.4.21",
     "gatsby-plugin-mdx": "^1.2.30",
     "gatsby-plugin-offline": "^3.2.21",
-    "gatsby-plugin-page-creator": "^2.3.19",
+    "gatsby-plugin-page-creator": "^2.10.1",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-styled-components": "^3.3.10",
     "gatsby-plugin-typescript": "^2.4.16",
